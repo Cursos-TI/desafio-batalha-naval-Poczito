@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
+    //Criação do tabuleiro (declaração e preenchimento da matriz)
+    //As casas com navio são representadas pelo algarismo 1
     int tabuleiro[5][5] = {
         {0, 0, 0, 0, 1},
         {0, 0, 0, 0, 1},
@@ -11,6 +11,7 @@ int main() {
         {0, 0, 0, 0, 0}
     };
 
+    //Exibição do tabuleiro para o usuário
     for(int i = 0; i < 5; i++){
         for(int j = 0; j < 5; j++){
             printf("%d ", tabuleiro[i][j]);
@@ -18,6 +19,7 @@ int main() {
         printf("\n");
     }
 
+    //Exibição das coordenadas que possuem parte de navio
     printf("\nCoordenadas com navio: ");
 
     for(int i = 0; i < 5; i++){
