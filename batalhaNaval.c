@@ -171,7 +171,7 @@ int main(){
         }
         printf("\n");
     }
-    printf("\nLegenda:");
+    printf("\nLegenda:\n");
     printf("0 = Água\n");
     printf("1 = Habilidade na água\n");
     printf("3 = Navio\n");
