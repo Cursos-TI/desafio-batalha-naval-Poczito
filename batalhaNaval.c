@@ -3,7 +3,7 @@
 #define LIN 10
 #define COL 10
 
-int main() {
+int main(){
 
     //Criação do tabuleiro todo preenchido com 0
     int tabuleiro[LIN][COL];
@@ -84,8 +84,8 @@ int main() {
     }
     tabuleiro[navioi - 1][navioj - 1] = tabuleiro[navioi][navioj] = tabuleiro[navioi + 1][navioj + 1] = 3;
     printf("Coordenadas do navio 4: (%d,%d), (%d,%d) e (%d,%d)\n\n", navioi, navioj, navioi + 1, navioj + 1, navioi + 2, navioj + 2);
-    verifica = 0; //Resetando verificador
 
+    //Criação das habilidades
 
     //Exibição do tabuleiro com os navios posicionados
     printf("---- Tabuleiro ----\n");
@@ -96,26 +96,86 @@ int main() {
         printf("\n");
     }
 
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
-
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
+    int escolha, habi, habj; //criando variáveis para a escolha da habilidade e localização
     
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
+    verifica = 0; //Reset do verificador
 
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
+    //Escolha da habilidade
+    while(verifica == 0){
+        printf("\nDigite o número da habilidade que deseja usar:\n");
+        printf("1 - Cone\n");
+        printf("2 - Octaedro\n");
+        printf("3 - Cruz\n");
+        scanf("%d", &escolha);
+        if(escolha >= 1 && escolha <= 3){
+            verifica = 1;
+        }else{
+            printf("Escolha inválida!");
+        }
+    }
 
+    verifica = 0; //Reset do verificador
+
+    //Escolha da posição da habilidade
+    while(verifica == 0){
+        printf("Insira a posição inicial da habilidade, linha e coluna:\n");
+        scanf("%d %d", &habi, &habj);
+
+        if((habi <= (LIN - 2)) && (habj <= (COL - 4)) && (habi >= 1) && (habj >= 1)){
+            verifica = 1;
+            printf("Posição válida!\n\n");
+        }
+        else{
+            printf("Posição inválida!\n\n");
+        }
+    }
+    
+    switch (escolha){
+        case 1:
+            tabuleiro[habi-1][habj+1]++;
+            tabuleiro[habi][habj]++;
+            tabuleiro[habi][habj+1]++;
+            tabuleiro[habi][habj+2]++;
+            tabuleiro[habi+1][habj+1]++;
+            tabuleiro[habi+1][habj]++;
+            tabuleiro[habi+1][habj-1]++;
+            tabuleiro[habi+1][habj+2]++;
+            tabuleiro[habi+1][habj+3]++;
+
+            break;
+
+        case 2:
+            tabuleiro[habi-1][habj+1]++;
+            tabuleiro[habi][habj]++;
+            tabuleiro[habi][habj+1]++;
+            tabuleiro[habi][habj+2]++;
+            tabuleiro[habi+1][habj+1]++;
+            break;
+
+        case 3:
+            tabuleiro[habi-1][habj+1]++;
+            tabuleiro[habi][habj]++;
+            tabuleiro[habi][habj+1]++;
+            tabuleiro[habi][habj+2]++;
+            tabuleiro[habi][habj-1]++;
+            tabuleiro[habi][habj+3]++;
+            tabuleiro[habi+1][habj+1]++;
+
+            break;   
+    }
+
+    printf("---- Tabuleiro ----\n");
+    for(int i = 0; i < LIN; i++){
+        for(int j = 0; j < COL; j++){
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\nLegenda:");
+    printf("0 = Água\n");
+    printf("1 = Habilidade na água\n");
+    printf("3 = Navio\n");
+    printf("4 = Habilidade no navio\n");
+    
     return 0;
 }
